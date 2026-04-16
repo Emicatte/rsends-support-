@@ -40,12 +40,13 @@ export default function DocLayout({
 
           <PageTransition>
             <h1
-              className="text-text"
               style={{
                 fontSize: 28,
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
                 marginBottom: subtitle ? 8 : 32,
+                color: "#E2E2F0",
+                fontFamily: "var(--font-display)",
               }}
             >
               {title}
@@ -56,8 +57,7 @@ export default function DocLayout({
               </p>
             )}
             <div
-              className="text-text"
-              style={{ fontSize: 15, lineHeight: 1.7 }}
+              style={{ fontSize: 15, lineHeight: 1.7, color: "#E2E2F0" }}
             >
               <div className="space-y-6">{children}</div>
             </div>

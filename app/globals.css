@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* RSend exact design tokens */
+  /* Map next/font CSS vars into Tailwind utilities */
+  --font-display: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), "Fira Code", monospace;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Product-exact color tokens */
   --color-bg: #0a0a0f;
   --color-surface: #111118;
   --color-card: #16161f;
@@ -15,9 +20,24 @@
   --color-amber: #FFB547;
   --color-blue: #3B82F6;
   --color-purple: #8B5CF6;
+}
 
-  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
+/* Product-exact CSS variables */
+:root {
+  --c-bg:      #050510;
+  --c-surface: #0a0918;
+  --c-card:    #0e0d1e;
+  --c-emerald: #00ffa3;
+  --c-red:     #ff2d55;
+  --c-amber:   #ffb800;
+  --c-pink:    #ff007a;
+  --c-muted:   #4a4a6a;
+  --c-text:    #e2e2f0;
+  --c-border:  rgba(255,255,255,0.06);
+
+  --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:     cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -25,12 +45,53 @@ html {
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-display);
+  background-color: #050510;
+  color: #e2e2f0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: var(--font-display), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Glass blur — exact from product */
+.bf-blur-24s {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* Ambient background glow — single subtle orb */
+.support-bg-glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(139,92,246,0.06) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Product-exact keyframes */
+@keyframes rpFadeUp {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes rpFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Entry stagger classes */
+.rp-stagger-1 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 0ms; }
+.rp-stagger-2 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 80ms; }
+.rp-stagger-3 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 160ms; }
+.rp-stagger-4 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 240ms; }
+.rp-stagger-5 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 320ms; }
+.rp-stagger-6 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 400ms; }
 
 /* Scrollbar */
 ::-webkit-scrollbar {

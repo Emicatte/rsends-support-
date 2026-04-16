@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
+import { Inter, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/chat/ChatWidget";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  variable: "--font-dm-mono",
+  display: "swap",
+  weight: ["400", "500"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -11,6 +25,12 @@ export const metadata: Metadata = {
   },
   description:
     "Everything you need to understand how RSend works. Documentation, guides, and API reference for the Web3 B2B payment gateway.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     title: "RSend Support",
     description:
@@ -25,22 +45,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`${inter.variable} ${dmMono.variable} h-full antialiased`}
+    >
       <body
-        className="flex min-h-full flex-col"
-        style={{
-          background: "#0a0a0f",
-          color: "#E2E2F0",
-          fontFamily:
-            "'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        }}
+        className={`${inter.className} flex min-h-full flex-col`}
+        style={{ background: "#0a0a0f", color: "#e2e2f0" }}
       >
+        {/* Ambient background glow — matches product's subtle purple orb */}
+        <div className="support-bg-glow" />
+
         <Navbar />
         <main className="flex-1" style={{ paddingTop: 60 }}>
           {children}

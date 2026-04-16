@@ -18,21 +18,22 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50"
+      className="bf-blur-24s fixed top-0 left-0 right-0 z-[1000]"
       style={{
         height: 60,
-        background: "rgba(10, 10, 15, 0.8)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+        background:
+          "linear-gradient(180deg, rgba(10,10,15,0.8) 0%, rgba(10,10,15,0.7) 100%)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
-      <nav className="mx-auto flex h-full max-w-[1400px] items-center justify-between px-6">
+      <nav
+        className="mx-auto flex h-full items-center justify-between"
+        style={{ maxWidth: 1400, padding: "0 24px" }}
+      >
         {/* Left: Logo + Support */}
         <Link href="/" className="flex items-center gap-3">
           <RSendLogo size={28} />
           <span
-            className="text-dim"
             style={{
               width: 1,
               height: 20,
@@ -42,7 +43,7 @@ export default function Navbar() {
               marginRight: 4,
             }}
           />
-          <span className="text-sub" style={{ fontSize: 13, fontWeight: 500 }}>
+          <span style={{ fontSize: 13, fontWeight: 500, color: "#8A8FA8" }}>
             Support
           </span>
         </Link>
@@ -55,16 +56,20 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors"
                 style={{
                   padding: "7px 16px",
                   borderRadius: 10,
-                  fontSize: 12,
-                  fontWeight: 500,
-                  color: isActive ? "#E2E2F0" : "#8A8FA8",
+                  border: "none",
                   background: isActive
                     ? "rgba(255,255,255,0.08)"
                     : "transparent",
+                  color: isActive ? "#E2E2F0" : "#8A8FA8",
+                  fontFamily: "var(--font-display)",
+                  fontSize: 12,
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  transition: "all 0.25s ease",
+                  textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
@@ -83,19 +88,22 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right: CTA */}
+        {/* Right: CTA — exact product "Connetti Wallet" style */}
         <a
           href="https://rsends.io"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center gap-1 md:flex"
+          className="hidden items-center gap-2 md:flex"
           style={{
-            background: "linear-gradient(135deg, #00ffa3, #00cc80)",
-            color: "#000",
-            fontWeight: 700,
-            fontSize: 12,
+            padding: "8px 16px",
             borderRadius: 20,
-            padding: "8px 18px",
+            background: "linear-gradient(135deg, #00ffa3, #00cc80)",
+            border: "none",
+            fontFamily: "var(--font-display)",
+            fontSize: 13,
+            fontWeight: 700,
+            color: "#000",
+            cursor: "pointer",
             textDecoration: "none",
           }}
         >
