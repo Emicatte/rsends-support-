@@ -4,7 +4,7 @@ import Callout from "@/components/docs/Callout";
 
 export const metadata: Metadata = {
   title: "Troubleshooting",
-  description: "Common RSend issues and how to fix them.",
+  description: "Common RSends issues and how to fix them.",
 };
 
 const toc = [
@@ -85,7 +85,7 @@ export default function TroubleshootingPage() {
         </p>
         <p>
           <strong>Fix:</strong> Check the webhook delivery logs in the Command
-          Center (Settings → Webhooks → Logs). RSend retries with exponential
+          Center (Settings → Webhooks → Logs). RSends retries with exponential
           backoff:
         </p>
         <div className="overflow-x-auto rounded-xl border border-border">

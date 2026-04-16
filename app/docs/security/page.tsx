@@ -5,7 +5,7 @@ import Callout from "@/components/docs/Callout";
 export const metadata: Metadata = {
   title: "Security",
   description:
-    "Smart contract security, Oracle system, and custodial model in RSend.",
+    "Smart contract security, Oracle system, and custodial model in RSends.",
 };
 
 const toc = [
@@ -78,7 +78,7 @@ export default function SecurityPage() {
         <ul className="list-disc space-y-1.5 pl-6">
           <li>
             <strong>End users: NON-custodial.</strong> You sign your own
-            transactions with your own wallet. RSend never has access to your
+            transactions with your own wallet. RSends never has access to your
             private key.
           </li>
           <li>
@@ -103,8 +103,8 @@ export default function SecurityPage() {
 
         <div className="mt-4">
           <Callout variant="danger" title="Scam Warning">
-            RSend will NEVER ask for your private key or seed phrase. If someone
-            claiming to be RSend support asks for this, it is a scam. Report it
+            RSends will NEVER ask for your private key or seed phrase. If someone
+            claiming to be RSends support asks for this, it is a scam. Report it
             immediately.
           </Callout>
         </div>

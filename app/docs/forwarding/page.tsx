@@ -5,7 +5,7 @@ import Callout from "@/components/docs/Callout";
 export const metadata: Metadata = {
   title: "Forwarding & Rules",
   description:
-    "Auto-forwarding, split rules, and payment distribution in RSend.",
+    "Auto-forwarding, split rules, and payment distribution in RSends.",
 };
 
 const toc = [
@@ -21,7 +21,7 @@ export default function ForwardingPage() {
           Auto-Forwarding
         </h2>
         <p>
-          When a payment arrives, RSend can automatically forward it to another
+          When a payment arrives, RSends can automatically forward it to another
           wallet. Configure this in the Command Center.
         </p>
         <p>Use cases:</p>
@@ -33,7 +33,7 @@ export default function ForwardingPage() {
         <p>
           Forwarding happens immediately after the FeeRouter distributes the
           net amount. It&apos;s a second on-chain transaction from the Master
-          wallet — gas is paid by RSend.
+          wallet — gas is paid by RSends.
         </p>
       </section>
 

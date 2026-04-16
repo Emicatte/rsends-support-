@@ -1,11 +1,6 @@
-interface RSendLogoProps {
-  size?: number;
-}
-
-export default function RSendLogo({ size = 28 }: RSendLogoProps) {
+export default function RSendsLogo({ size = 28 }: { size?: number }) {
   return (
-    <div className="flex items-center" style={{ gap: 8 }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       <img
         src="/favicon.svg"
         alt="RSends"

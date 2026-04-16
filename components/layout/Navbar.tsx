@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import RSendLogo from "./RSendLogo";
+import RSendsLogo from "./RSendsLogo";
 
 const navLinks = [
   { href: "/docs/how-it-works", label: "How it Works" },
@@ -32,7 +32,7 @@ export default function Navbar() {
       >
         {/* Left: Logo + Support */}
         <Link href="/" className="flex items-center gap-3">
-          <RSendLogo size={28} />
+          <RSendsLogo size={28} />
           <span
             style={{
               width: 1,

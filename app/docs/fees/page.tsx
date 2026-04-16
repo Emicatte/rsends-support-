@@ -5,7 +5,7 @@ import Callout from "@/components/docs/Callout";
 export const metadata: Metadata = {
   title: "Fees",
   description:
-    "RSend fee structure, gas costs, and transaction cost examples.",
+    "RSends fee structure, gas costs, and transaction cost examples.",
 };
 
 const toc = [
@@ -27,7 +27,7 @@ export default function FeesPage() {
             Deducted automatically by the FeeRouter contract before the
             recipient gets paid.
           </li>
-          <li>Fee goes to the RSend Treasury wallet.</li>
+          <li>Fee goes to the RSends Treasury wallet.</li>
         </ul>
         <p>
           There are no monthly fees, no setup fees, and no minimum volume
@@ -100,8 +100,8 @@ export default function FeesPage() {
         <div className="mt-4">
           <Callout variant="info" title="Swap Fees">
             Swap transactions (e.g. ETH&#8594;USDC) have an additional Uniswap
-            pool fee (typically 0.3%) on top of the RSend 0.5% fee. The swap
-            fee is deducted by the DEX, not by RSend.
+            pool fee (typically 0.3%) on top of the RSends 0.5% fee. The swap
+            fee is deducted by the DEX, not by RSends.
           </Callout>
         </div>
       </section>

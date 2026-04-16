@@ -87,13 +87,13 @@ export default function Home() {
             backgroundClip: "text",
           }}
         >
-          RSend Support
+          RSends Support
         </h1>
         <p
           className="mx-auto mt-4 max-w-md"
           style={{ fontSize: 15, color: "#8A8FA8" }}
         >
-          Everything you need to understand how RSend works.
+          Everything you need to understand how RSends works.
         </p>
       </div>
 
@@ -173,7 +173,7 @@ export default function Home() {
           className="inline-flex items-center gap-2 transition-colors hover:bg-[rgba(0,255,163,0.12)]"
         >
           <MessageCircle size={15} />
-          Ask RSend AI
+          Ask RSends AI
         </button>
       </div>
     </div>

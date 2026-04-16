@@ -253,10 +253,10 @@ export default function ChatWidget() {
                     className="text-text"
                     style={{ fontSize: 13, fontWeight: 600 }}
                   >
-                    RSend AI Support
+                    RSends AI Support
                   </p>
                   <p className="text-dim" style={{ fontSize: 11 }}>
-                    Ask anything about RSend
+                    Ask anything about RSends
                   </p>
                 </div>
               </div>
@@ -296,7 +296,7 @@ export default function ChatWidget() {
                       How can I help?
                     </p>
                     <p className="mt-1 text-dim" style={{ fontSize: 12 }}>
-                      Ask about payments, fees, API, or anything RSend.
+                      Ask about payments, fees, API, or anything RSends.
                     </p>
                   </div>
                   <div className="flex w-full max-w-[260px] flex-col gap-2">

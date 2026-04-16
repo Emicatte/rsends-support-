@@ -6,7 +6,7 @@ import CodeBlock from "@/components/docs/CodeBlock";
 export const metadata: Metadata = {
   title: "Payments",
   description:
-    "Direct payments, payment intents, and payment matching in RSend.",
+    "Direct payments, payment intents, and payment matching in RSends.",
 };
 
 const toc = [
@@ -24,7 +24,7 @@ export default function PaymentsPage() {
         </h2>
         <p>The simplest flow. No API needed.</p>
         <ol className="list-decimal space-y-1.5 pl-6">
-          <li>The payer goes to RSend and selects token, amount, and recipient.</li>
+          <li>The payer goes to RSends and selects token, amount, and recipient.</li>
           <li>The Oracle verifies the transaction and signs.</li>
           <li>Transaction executes on-chain via the FeeRouter contract.</li>
         </ol>
@@ -41,7 +41,7 @@ export default function PaymentsPage() {
         <p>
           For programmatic integrations. The merchant creates a payment intent
           via the API, gets back an <code>intent_id</code>, and passes it to
-          the payer. When the payer completes the payment, RSend sends a
+          the payer. When the payer completes the payment, RSends sends a
           webhook.
         </p>
 
@@ -76,7 +76,7 @@ export default function PaymentsPage() {
 
         <p className="mt-4">
           The <code>intent_id</code> (e.g. <code>pi_abc123</code>) is what you
-          pass to the payer. They use it to complete the payment on RSend.
+          pass to the payer. They use it to complete the payment on RSends.
         </p>
       </section>
 
@@ -85,7 +85,7 @@ export default function PaymentsPage() {
           Payment Matching
         </h2>
         <p>
-          When an incoming payment hits the FeeRouter, RSend matches it against
+          When an incoming payment hits the FeeRouter, RSends matches it against
           open payment intents. The match uses three fields:
         </p>
         <ul className="list-disc space-y-1 pl-6">

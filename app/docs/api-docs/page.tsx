@@ -5,7 +5,7 @@ import CodeBlock from "@/components/docs/CodeBlock";
 
 export const metadata: Metadata = {
   title: "API Reference",
-  description: "RSend merchant API endpoints, authentication, and webhook events.",
+  description: "RSends merchant API endpoints, authentication, and webhook events.",
 };
 
 const toc = [
@@ -299,7 +299,7 @@ export default function ApiReferencePage() {
         <h2 className="text-xl font-semibold text-text">
           Webhook Events
         </h2>
-        <p>RSend emits three webhook events:</p>
+        <p>RSends emits three webhook events:</p>
         <ul className="list-disc space-y-1 pl-6">
           <li>
             <code>payment.completed</code> — Payment confirmed and forwarded.
@@ -332,7 +332,7 @@ export default function ApiReferencePage() {
         />
 
         <p className="mt-3">
-          The <code>X-RSend-Signature</code> header contains the HMAC-SHA256
+          The <code>X-RSends-Signature</code> header contains the HMAC-SHA256
           signature of the raw request body, signed with your webhook secret.
         </p>
       </section>
@@ -343,7 +343,7 @@ export default function ApiReferencePage() {
           HMAC Verification
         </h2>
         <p>
-          Always verify the <code>X-RSend-Signature</code> header before
+          Always verify the <code>X-RSends-Signature</code> header before
           processing a webhook event. Here&apos;s how:
         </p>
 
@@ -403,7 +403,7 @@ def verify_webhook(body: bytes, signature: str, secret: str) -> bool:
 # Usage in Flask
 @app.route("/webhooks/rsend", methods=["POST"])
 def handle_webhook():
-    signature = request.headers.get("X-RSend-Signature", "")
+    signature = request.headers.get("X-RSends-Signature", "")
     is_valid = verify_webhook(request.data, signature, WEBHOOK_SECRET)
 
     if not is_valid:

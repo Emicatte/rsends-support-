@@ -6,7 +6,7 @@ import StepFlow from "@/components/docs/StepFlow";
 export const metadata: Metadata = {
   title: "How it Works",
   description:
-    "Understand the complete RSend payment pipeline — from FeeRouter contract to settlement.",
+    "Understand the complete RSends payment pipeline — from FeeRouter contract to settlement.",
 };
 
 const toc = [
@@ -49,7 +49,7 @@ const steps = [
     description: (
       <ul className="list-disc space-y-1 pl-4">
         <li>The contract deducts the platform fee (0.5% default).</li>
-        <li>Fee goes to the RSend Treasury wallet.</li>
+        <li>Fee goes to the RSends Treasury wallet.</li>
         <li>Net amount goes to the recipient.</li>
       </ul>
     ),
@@ -84,7 +84,7 @@ export default function HowItWorksPage() {
       <section id="overview">
         <h2 className="text-xl font-semibold text-text">Overview</h2>
         <p>
-          RSend is a Web3 payment gateway for European businesses. It lets you
+          RSends is a Web3 payment gateway for European businesses. It lets you
           accept crypto payments on Base L2 and other chains (EVM, Tron,
           Solana).
         </p>
@@ -96,7 +96,7 @@ export default function HowItWorksPage() {
         </p>
         <p>
           The merchant never touches private keys. The payer signs their own
-          transaction. RSend sits in the middle as a routing and compliance
+          transaction. RSends sits in the middle as a routing and compliance
           layer.
         </p>
       </section>

@@ -6,7 +6,7 @@ export default function Footer() {
         style={{ height: 48 }}
       >
         <p className="text-dim" style={{ fontSize: 11 }}>
-          &copy; 2025 RSend &mdash; Crypto Payments. Fully Compliant.
+          &copy; 2025 RSends &mdash; Crypto Payments. Fully Compliant.
         </p>
         <a
           href="https://rsends.io"

@@ -20,11 +20,11 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "RSend Support",
-    template: "%s | RSend Support",
+    default: "RSends Support",
+    template: "%s | RSends Support",
   },
   description:
-    "Everything you need to understand how RSend works. Documentation, guides, and API reference for the Web3 B2B payment gateway.",
+    "Everything you need to understand how RSends works. Documentation, guides, and API reference for the Web3 B2B payment gateway.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
@@ -32,10 +32,10 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "RSend Support",
+    title: "RSends Support",
     description:
-      "Documentation and support for RSend — Web3 B2B payment gateway on Base L2.",
-    siteName: "RSend Support",
+      "Documentation and support for RSends — Web3 B2B payment gateway on Base L2.",
+    siteName: "RSends Support",
   },
 };
 
