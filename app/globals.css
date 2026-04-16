@@ -1,12 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Map next/font CSS vars into Tailwind utilities */
   --font-display: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), "Fira Code", monospace;
   --font-sans: var(--font-inter), system-ui, sans-serif;
 
-  /* Product-exact color tokens */
   --color-bg: #0a0a0f;
   --color-surface: #111118;
   --color-card: #16161f;
@@ -22,7 +20,6 @@
   --color-purple: #8B5CF6;
 }
 
-/* Product-exact CSS variables */
 :root {
   --c-bg:      #050510;
   --c-surface: #0a0918;
@@ -40,9 +37,7 @@
   --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html {
-  color-scheme: dark;
-}
+html { color-scheme: dark; }
 
 body {
   background-color: #050510;
@@ -54,29 +49,213 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glass blur — exact from product */
+/* ============================================================
+   BACKGROUND SYSTEM — 4 Orbs (simplified from product's 8)
+   Cyan + Magenta light sources with GPU-accelerated animations
+   ============================================================ */
+
+.rp-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.rp-bg__base {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #050510;
+}
+
+.rp-bg__orbs {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.rp-bg__blur {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  isolation: isolate;
+}
+
+.rp-bg__blur::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(140px);
+  -webkit-backdrop-filter: blur(140px);
+  transform: translateZ(0);
+  will-change: transform, backdrop-filter;
+}
+
+.rp-orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  contain: layout style;
+}
+
+/* Orb 1 — CYAN — BOTTOM-LEFT — primary light */
+.rp-orb--1 {
+  width: 75vw; height: 75vw;
+  max-width: 1100px; max-height: 1100px;
+  bottom: -30vh; left: -18vw;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 240, 255, 0.90),
+    rgba(0, 220, 245, 0.65) 15%,
+    rgba(0, 190, 220, 0.40) 30%,
+    rgba(0, 150, 185, 0.20) 45%,
+    rgba(0, 100, 140, 0.06) 60%,
+    transparent 75%
+  );
+  filter: blur(80px);
+  opacity: 1;
+  animation: orbDrift1 20s ease-in-out infinite;
+}
+
+/* Orb 2 — CYAN — BOTTOM-RIGHT — secondary light */
+.rp-orb--2 {
+  width: 70vw; height: 70vw;
+  max-width: 1000px; max-height: 1000px;
+  bottom: -28vh; right: -20vw;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 235, 250, 0.85),
+    rgba(0, 210, 240, 0.55) 15%,
+    rgba(0, 175, 210, 0.32) 30%,
+    rgba(0, 130, 165, 0.14) 48%,
+    rgba(0, 80, 120, 0.04) 62%,
+    transparent 75%
+  );
+  filter: blur(80px);
+  opacity: 1;
+  animation: orbDrift2 22s ease-in-out infinite;
+}
+
+/* Orb 3 — MAGENTA — CENTER-RIGHT — pink light */
+.rp-orb--3 {
+  width: 55vw; height: 55vw;
+  max-width: 800px; max-height: 800px;
+  top: 5vh; right: -12vw;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 50, 200, 0.80),
+    rgba(240, 40, 180, 0.50) 15%,
+    rgba(200, 30, 150, 0.28) 30%,
+    rgba(150, 20, 110, 0.12) 48%,
+    rgba(100, 10, 70, 0.03) 62%,
+    transparent 75%
+  );
+  filter: blur(90px);
+  opacity: 0.9;
+  animation: orbDrift3 26s ease-in-out infinite;
+}
+
+/* Orb 4 — INDIGO — MID — atmospheric depth */
+.rp-orb--4 {
+  width: 55vw; height: 55vw;
+  max-width: 800px; max-height: 800px;
+  top: 10vh; left: 20vw;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(40, 20, 120, 0.35),
+    rgba(25, 12, 80, 0.18) 30%,
+    rgba(15, 8, 50, 0.06) 50%,
+    transparent 65%
+  );
+  filter: blur(130px);
+  opacity: 0.6;
+  animation: orbDrift1 36s ease-in-out infinite;
+  animation-delay: -18s;
+}
+
+/* Noise overlay — grain anti-banding */
+.rp-bg__noise {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  contain: strict;
+}
+
+/* Orb drift keyframes */
+@keyframes orbDrift1 {
+  0%   { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+  15%  { transform: translate3d(6vw, 5vh, 0) scale3d(1.06, 1.06, 1); }
+  35%  { transform: translate3d(3vw, 12vh, 0) scale3d(0.94, 0.94, 1); }
+  55%  { transform: translate3d(-5vw, 8vh, 0) scale3d(1.08, 1.08, 1); }
+  75%  { transform: translate3d(-3vw, 3vh, 0) scale3d(0.96, 0.96, 1); }
+  100% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+}
+
+@keyframes orbDrift2 {
+  0%   { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+  20%  { transform: translate3d(-6vw, -4vh, 0) scale3d(1.07, 1.07, 1); }
+  45%  { transform: translate3d(-3vw, -10vh, 0) scale3d(0.93, 0.93, 1); }
+  65%  { transform: translate3d(5vw, -6vh, 0) scale3d(1.05, 1.05, 1); }
+  85%  { transform: translate3d(2vw, -2vh, 0) scale3d(0.97, 0.97, 1); }
+  100% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+}
+
+@keyframes orbDrift3 {
+  0%   { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+  18%  { transform: translate3d(-4vw, 6vh, 0) scale3d(1.08, 1.08, 1); }
+  40%  { transform: translate3d(5vw, 4vh, 0) scale3d(0.92, 0.92, 1); }
+  60%  { transform: translate3d(2vw, -5vh, 0) scale3d(1.06, 1.06, 1); }
+  80%  { transform: translate3d(-3vw, -2vh, 0) scale3d(0.95, 0.95, 1); }
+  100% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+}
+
+@media (max-width: 640px) {
+  .rp-orb--1 { width: 100vw; height: 100vw; filter: blur(70px); }
+  .rp-orb--2 { width: 95vw; height: 95vw; filter: blur(70px); }
+  .rp-orb--3 { width: 80vw; height: 80vw; filter: blur(80px); }
+  .rp-orb--4 { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp-orb--1, .rp-orb--2, .rp-orb--3, .rp-orb--4 { animation: none; }
+}
+
+/* ============================================================
+   GLASS BLUR — GPU-composited ::before (exact from product)
+   ============================================================ */
+
 .bf-blur-24s {
+  position: relative;
+  isolation: isolate;
+}
+
+.bf-blur-24s::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  transform: translateZ(0);
+  will-change: transform, backdrop-filter;
+  pointer-events: none;
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
 }
 
-/* Ambient background glow — single subtle orb */
-.support-bg-glow {
-  position: fixed;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(139,92,246,0.06) 0%, transparent 70%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: -1;
-}
+/* ============================================================
+   ANIMATIONS — Staggered fade-in
+   ============================================================ */
 
-/* Product-exact keyframes */
 @keyframes rpFadeUp {
-  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  from { opacity: 0; transform: translate3d(0, 20px, 0); }
   to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
@@ -85,7 +264,6 @@ body {
   to   { opacity: 1; }
 }
 
-/* Entry stagger classes */
 .rp-stagger-1 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 0ms; }
 .rp-stagger-2 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 80ms; }
 .rp-stagger-3 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 160ms; }
@@ -93,31 +271,20 @@ body {
 .rp-stagger-5 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 320ms; }
 .rp-stagger-6 { animation: rpFadeUp 0.6s var(--ease-spring) both; animation-delay: 400ms; }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
+/* ============================================================
+   UTILITIES
+   ============================================================ */
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.15); }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* Selection */
 ::selection {
   background: rgba(0, 255, 163, 0.2);
   color: #fff;
 }
 
-/* Inline code */
 code {
   font-family: var(--font-mono);
   font-size: 0.85em;
