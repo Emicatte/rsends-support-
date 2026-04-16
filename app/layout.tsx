@@ -53,11 +53,24 @@ export default function RootLayout({
         className={`${inter.className} flex min-h-full flex-col`}
         style={{ background: "#0a0a0f", color: "#e2e2f0" }}
       >
-        {/* Ambient background glow — matches product's subtle purple orb */}
-        <div className="support-bg-glow" />
+        {/* Background orb system — matches product's animated light sources */}
+        <div className="rp-bg">
+          <div className="rp-bg__base" />
+          <div className="rp-bg__orbs">
+            <div className="rp-orb rp-orb--1" />
+            <div className="rp-orb rp-orb--2" />
+            <div className="rp-orb rp-orb--3" />
+            <div className="rp-orb rp-orb--4" />
+          </div>
+          <div className="rp-bg__blur" />
+          <div className="rp-bg__noise" />
+        </div>
 
         <Navbar />
-        <main className="flex-1" style={{ paddingTop: 60 }}>
+        <main
+          className="flex-1"
+          style={{ paddingTop: 60, position: "relative", zIndex: 1 }}
+        >
           {children}
         </main>
         <Footer />

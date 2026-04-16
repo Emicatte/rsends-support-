@@ -67,7 +67,10 @@ const cards: CardData[] = [
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-24 md:py-32">
+    <div
+      className="mx-auto max-w-5xl px-6 py-24 md:py-32"
+      style={{ position: "relative", zIndex: 10 }}
+    >
       {/* Hero */}
       <div className="rp-stagger-1 text-center">
         <h1
